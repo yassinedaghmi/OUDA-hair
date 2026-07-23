@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OUDA HAIR — Huile Capillaire Multi-Action</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noir:#0b0a08;
+    --charbon:#17130f;
+    --charbon-2:#1f1a14;
+    --or:#b8923f;
+    --or-clair:#d9bd7a;
+    --or-pale: rgba(184,146,63,0.35);
+    --ivoire:#f4efe4;
+    --ivoire-soft: rgba(244,239,228,0.7);
+    --bordeaux:#6b2f2a;
+    --radius: 2px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--noir);
+    color:var(--ivoire);
+    font-family:'Poppins', sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:400;
+    letter-spacing:0.01em;
+  }
+
+  .ar{
+    font-family:'Tajawal', sans-serif;
+    direction:rtl;
+    unicode-bidi:isolate;
+  }
+
+  .eyebrow{
+    font-family:'Poppins', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--or-clair);
+    font-weight:500;
+  }
+
+  .container{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 clamp(20px, 5vw, 64px);
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    padding:20px 0;
+    transition: background 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(11,10,8,0.92);
+    backdrop-filter: blur(10px);
+    padding:14px 0;
+    border-bottom:1px solid var(--or-pale);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.7rem;
+    letter-spacing:0.14em;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  .logo span{
+    font-family:'Poppins', sans-serif;
+    font-size:0.55rem;
+    letter-spacing:0.35em;
+    color:var(--or-clair);
+    font-weight:500;
+  }
+  nav.links{
+    display:flex;
+    gap:38px;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+  }
+  nav.links a{
+    position:relative;
+    opacity:0.85;
+    transition:opacity 0.3s;
+  }
+  nav.links a:hover{ opacity:1; color:var(--or-clair); }
+  .nav-cta{
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  .price-pill{
+    border:1px solid var(--or-pale);
+    padding:8px 18px;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    border-radius:40px;
+    color:var(--or-clair);
+    display:none;
+  }
+  @media(min-width:640px){ .price-pill{ display:inline-block; } }
+  .btn{
+    display:inline-block;
+    padding:13px 30px;
+    font-size:0.76rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    border-radius:40px;
+    cursor:pointer;
+    border:1px solid var(--or);
+    transition:all 0.35s ease;
+  }
+  .btn-solid{
+    background:var(--or);
+    color:var(--noir);
+    font-weight:500;
+  }
+  .btn-solid:hover{ background:var(--or-clair); border-color:var(--or-clair); }
+  .btn-outline{
+    background:transparent;
+    color:var(--ivoire);
+  }
+  .btn-outline:hover{ border-color:var(--or-clair); color:var(--or-clair); }
+  .burger{ display:none; }
+  @media(max-width:860px){
+    nav.links{ display:none; }
+    .burger{ display:block; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:110px;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background-image:url('img/hero-bottle.jpeg');
+    background-size:cover;
+    background-position: center 30%;
+    filter:saturate(0.9);
+  }
+  .hero-bg::after{
+    content:"";
+  }
+  .hero-scrim{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(90deg, rgba(11,10,8,0.97) 0%, rgba(11,10,8,0.86) 32%, rgba(11,10,8,0.35) 62%, rgba(11,10,8,0.75) 100%),
+      linear-gradient(0deg, rgba(11,10,8,0.9) 0%, rgba(11,10,8,0) 30%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    max-width:640px;
+  }
+  .hero-content h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    font-weight:400;
+    line-height:1.04;
+    margin:22px 0 10px;
+    color:var(--ivoire);
+  }
+  .hero-content h1 em{
+    font-style:italic;
+    color:var(--or-clair);
+  }
+  .hero-ar{
+    font-size:1.15rem;
+    color:var(--ivoire-soft);
+    margin:6px 0 26px;
+    text-align:right;
+    max-width:420px;
+  }
+  .hero-sub{
+    font-size:1.02rem;
+    color:var(--ivoire-soft);
+    max-width:460px;
+    margin-bottom:38px;
+    font-weight:300;
+  }
+  .hero-actions{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:46px;
+  }
+  .hero-facts{
+    display:flex;
+    gap:34px;
+    flex-wrap:wrap;
+    padding-top:30px;
+    border-top:1px solid var(--or-pale);
+  }
+  .hero-facts div{ font-size:0.74rem; letter-spacing:0.06em; color:var(--ivoire-soft); }
+  .hero-facts strong{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.6rem;
+    color:var(--or-clair);
+    font-weight:500;
+  }
+  .scroll-hint{
+    position:absolute;
+    bottom:34px; left:50%;
+    transform:translateX(-50%);
+    z-index:2;
+    display:flex; flex-direction:column; align-items:center;
+    gap:8px;
+    opacity:0.6;
+    font-size:0.65rem;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+  }
+  .scroll-hint .line{
+    width:1px; height:34px;
+    background:linear-gradient(var(--or-clair), transparent);
+    animation: dropfall 2.2s ease-in-out infinite;
+  }
+  @keyframes dropfall{
+    0%{ transform:scaleY(0); transform-origin:top; }
+    50%{ transform:scaleY(1); transform-origin:top; }
+    50.01%{ transform-origin:bottom; }
+    100%{ transform:scaleY(0); transform-origin:bottom; }
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ position:relative; padding:120px 0; }
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 70px;
+  }
+  .section-head h2{
+    font-size:clamp(2.1rem, 4vw, 3rem);
+    margin-top:14px;
+    font-weight:400;
+  }
+  .section-head p{
+    color:var(--ivoire-soft);
+    margin-top:16px;
+    font-size:0.98rem;
+  }
+  .divider{
+    width:60px; height:1px;
+    background:var(--or);
+    margin:0 auto;
+  }
+
+  /* ---------- BENEFITS ---------- */
+  .benefits{ background:var(--charbon); }
+  .benefit-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--or-pale);
+    border:1px solid var(--or-pale);
+  }
+  @media(max-width:760px){ .benefit-grid{ grid-template-columns:repeat(2,1fr); } }
+  .benefit{
+    background:var(--charbon);
+    padding:44px 26px;
+    text-align:center;
+    transition:background 0.3s;
+  }
+  .benefit:hover{ background:var(--charbon-2); }
+  .benefit svg{ width:34px; height:34px; margin:0 auto 18px; stroke:var(--or-clair); }
+  .benefit h3{ font-size:1.3rem; font-weight:500; margin-bottom:8px; }
+  .benefit p{ font-size:0.82rem; color:var(--ivoire-soft); }
+
+  /* ---------- CERCLE / INGREDIENTS (signature) ---------- */
+  .cercle-section{ background:var(--noir); }
+  .cercle-wrap{
+    position:relative;
+    width:min(92vw, 620px);
+    aspect-ratio:1/1;
+    margin:0 auto;
+  }
+  .cercle-ring{
+    position:absolute; inset:8%;
+    border:1px dashed var(--or-pale);
+    border-radius:50%;
+  }
+  .cercle-center{
+    position:absolute;
+    left:50%; top:50%;
+    transform:translate(-50%,-50%);
+    width:34%;
+    border-radius:50%;
+    overflow:hidden;
+    box-shadow:0 0 0 1px var(--or-pale), 0 30px 60px rgba(0,0,0,0.6);
+  }
+  .cercle-center img{ width:100%; height:100%; object-fit:cover; }
+  .ingredient{
+    position:absolute;
+    width:150px;
+    text-align:center;
+    transform:translate(-50%,-50%);
+  }
+  .ingredient .dot{
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--or-clair);
+    margin:0 auto 8px;
+    box-shadow:0 0 12px var(--or-clair);
+  }
+  .ingredient .fr{ font-size:0.88rem; letter-spacing:0.03em; font-weight:500; color:var(--ivoire); }
+  .ingredient .lat{ font-size:0.66rem; font-style:italic; color:var(--ivoire-soft); }
+
+  .ingredient-list-mobile{ display:none; }
+  @media(max-width:720px){
+    .cercle-wrap{ display:none; }
+    .ingredient-list-mobile{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      max-width:520px;
+      margin:0 auto;
+    }
+    .ingredient-list-mobile .ingredient{
+      position:static;
+      transform:none;
+      width:auto;
+    }
+  }
+
+  /* ---------- USAGE ---------- */
+  .usage{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:70px;
+    align-items:center;
+  }
+  @media(max-width:860px){ .usage{ grid-template-columns:1fr; gap:50px; } }
+  .usage-img{
+    position:relative;
+    border:1px solid var(--or-pale);
+    padding:14px;
+  }
+  .usage-img img{ width:100%; }
+  .steps{ counter-reset:step; }
+  .step{
+    display:flex;
+    gap:22px;
+    padding:26px 0;
+    border-bottom:1px solid rgba(244,239,228,0.08);
+  }
+  .step:first-child{ padding-top:0; }
+  .step-num{
+    font-family:'Cormorant Garamond', serif;
+    font-size:2.2rem;
+    color:var(--or);
+    font-weight:400;
+    min-width:46px;
+  }
+  .step h3{ font-size:1.2rem; font-weight:500; margin-bottom:6px; }
+  .step p{ color:var(--ivoire-soft); font-size:0.9rem; }
+
+  /* ---------- LIFESTYLE BAND ---------- */
+  .lifestyle{
+    padding:0;
+    position:relative;
+    height:60vh;
+    min-height:420px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .lifestyle img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center 30%;
+  }
+  .lifestyle::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,10,8,0.75), rgba(11,10,8,0.25) 40%, rgba(11,10,8,0.85));
+  }
+  .lifestyle-quote{
+    position:relative; z-index:2;
+    text-align:center;
+    max-width:680px;
+    padding:0 24px;
+  }
+  .lifestyle-quote p.display{
+    font-size:clamp(1.5rem, 3.4vw, 2.4rem);
+    font-style:italic;
+    color:var(--ivoire);
+    line-height:1.4;
+  }
+  .lifestyle-quote .eyebrow{ display:block; margin-top:18px; }
+
+  /* ---------- ORDER ---------- */
+  .order{ background:var(--charbon); }
+  .order-inner{
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+    gap:0;
+    border:1px solid var(--or-pale);
+  }
+  @media(max-width:900px){ .order-inner{ grid-template-columns:1fr; } }
+
+  .order-summary{
+    background:var(--noir);
+    padding:56px 44px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .order-summary h3{ font-size:1.8rem; margin:14px 0 18px; }
+  .order-summary ul{ list-style:none; margin-bottom:30px; }
+  .order-summary li{
+    font-size:0.88rem;
+    color:var(--ivoire-soft);
+    padding:8px 0;
+    border-bottom:1px solid rgba(244,239,228,0.08);
+    display:flex;
+    justify-content:space-between;
+  }
+  .price-block{
+    border-top:1px solid var(--or-pale);
+    padding-top:24px;
+    margin-top:auto;
+  }
+  .price-block .amount{
+    font-family:'Cormorant Garamond', serif;
+    font-size:3.2rem;
+    color:var(--or-clair);
+    line-height:1;
+  }
+  .price-block .amount sup{ font-size:1.2rem; margin-left:4px; }
+  .price-block small{ color:var(--ivoire-soft); font-size:0.78rem; letter-spacing:0.04em; }
+
+  .order-form{ padding:56px 44px; }
+  .field{ margin-bottom:20px; }
+  .field label{
+    display:block;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--or-clair);
+    margin-bottom:8px;
+  }
+  .field input, .field select{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid rgba(244,239,228,0.25);
+    color:var(--ivoire);
+    font-family:'Poppins', sans-serif;
+    font-size:0.98rem;
+    padding:10px 2px;
+    outline:none;
+    transition:border-color 0.3s;
+  }
+  .field select option{ background:var(--charbon); color:var(--ivoire); }
+  .field input:focus, .field select:focus{ border-color:var(--or); }
+  .row-2{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media(max-width:520px){ .row-2{ grid-template-columns:1fr; } }
+  .submit-btn{
+    width:100%;
+    margin-top:14px;
+    padding:16px;
+    text-align:center;
+  }
+  .form-note{
+    margin-top:16px;
+    font-size:0.76rem;
+    color:var(--ivoire-soft);
+    text-align:center;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-item{
+    border-bottom:1px solid rgba(244,239,228,0.1);
+  }
+  .faq-q{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:24px 4px;
+    cursor:pointer;
+    font-size:1.05rem;
+    font-family:'Cormorant Garamond', serif;
+  }
+  .faq-q .plus{
+    font-size:1.4rem;
+    color:var(--or-clair);
+    transition:transform 0.3s;
+  }
+  .faq-item.open .plus{ transform:rotate(45deg); }
+  .faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.35s ease;
+    color:var(--ivoire-soft);
+    font-size:0.9rem;
+  }
+  .faq-a-inner{ padding-bottom:22px; max-width:560px; }
+  .faq-wrap{ max-width:680px; margin:0 auto; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--noir);
+    border-top:1px solid var(--or-pale);
+    padding:60px 0 30px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:40px;
+    margin-bottom:40px;
+  }
+  .footer-brand .logo{ margin-bottom:14px; }
+  .footer-brand p{ color:var(--ivoire-soft); font-size:0.85rem; max-width:280px; }
+  .footer-ar{
+    font-size:1rem;
+    color:var(--or-clair);
+    margin-top:14px;
+  }
+  .footer-links h4{
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--or-clair);
+    margin-bottom:16px;
+    font-weight:500;
+  }
+  .footer-links a{
+    display:block;
+    color:var(--ivoire-soft);
+    font-size:0.86rem;
+    padding:5px 0;
+    transition:color 0.3s;
+  }
+  .footer-links a:hover{ color:var(--or-clair); }
+  .footer-bottom{
+    border-top:1px solid rgba(244,239,228,0.08);
+    padding-top:24px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:0.74rem;
+    color:var(--ivoire-soft);
+  }
+
+  /* whatsapp floating */
+  .wa-float{
+    position:fixed;
+    bottom:24px; right:24px;
+    z-index:90;
+    width:56px; height:56px;
+    border-radius:50%;
+    background:var(--or);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    transition:transform 0.3s;
+  }
+  .wa-float:hover{ transform:scale(1.08); }
+  .wa-float svg{ width:26px; height:26px; fill:var(--noir); }
+
+  ::selection{ background:var(--or); color:var(--noir); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header id="siteHeader">
+  <div class="container nav-inner">
+    <div class="logo">OUDA <span>HAIR</span></div>
+    <nav class="links">
+      <a href="#bienfaits">Bienfaits</a>
+      <a href="#composition">Composition</a>
+      <a href="#usage">Utilisation</a>
+      <a href="#commander">Commander</a>
+    </nav>
+    <div class="nav-cta">
+      <span class="price-pill">199 DH · Livraison incluse</span>
+      <a href="#commander" class="btn btn-solid">Commander</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-scrim"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow">Huile Capillaire Multi-Action</span>
+      <h1>Le rituel d'une <em>chevelure</em> révélée</h1>
+      <p class="hero-ar ar">الزيت الذي يعتني بشعرك بلمسة من الفخامة</p>
+      <p class="hero-sub">Argan, jojoba, chanvre, romarin et lavande réunis dans une seule formule pour nourrir, réparer et fortifier chaque longueur, mèche après mèche.</p>
+      <div class="hero-actions">
+        <a href="#commander" class="btn btn-solid">Commander — 199 DH</a>
+        <a href="#bienfaits" class="btn btn-outline">Découvrir la formule</a>
+      </div>
+      <div class="hero-facts">
+        <div><strong>7</strong>huiles &amp; actifs naturels</div>
+        <div><strong>6</strong>actions ciblées</div>
+        <div><strong>100%</strong>livraison incluse</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Explorer</span><span class="line"></span></div>
+</section>
+
+<!-- ===================== BENEFITS ===================== -->
+<section class="benefits" id="bienfaits">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Six actions, une formule</span>
+      <h2>Ce que fait l'huile OUDA</h2>
+      <p>Une synergie d'huiles vierges pour un soin capillaire complet, du cuir chevelu aux pointes.</p>
+    </div>
+
+    <div class="benefit-grid">
+      <div class="benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M12 2c4 5 7 8.5 7 12.5A7 7 0 1 1 5 14.5C5 10.5 8 7 12 2Z"/></svg>
+        <h3>Nourrit</h3>
+        <p>Pénètre en profondeur pour redonner souplesse et vitalité à la fibre capillaire.</p>
+      </div>
+      <div class="benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M4 12c4-6 12-6 16 0M4 12c4 6 12 6 16 0M12 4v16"/></svg>
+        <h3>Répare</h3>
+        <p>Aide à restructurer les longueurs abîmées, cassantes ou fragilisées.</p>
+      </div>
+      <div class="benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M12 3v18M6 8l6-5 6 5M6 16l6 5 6-5"/></svg>
+        <h3>Fortifie</h3>
+        <p>Renforce la fibre à la racine pour des cheveux plus résistants dans le temps.</p>
+      </div>
+      <div class="benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><circle cx="12" cy="12" r="8"/><path d="M9 12h6M12 9v6"/></svg>
+        <h3>Anti-chute</h3>
+        <p>Un geste quotidien pensé pour accompagner un cuir chevelu affaibli.</p>
+      </div>
+      <div class="benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M4 6c4 0 4 4 8 4s4-4 8-4M4 12c4 0 4 4 8 4s4-4 8-4M4 18c4 0 4 4 8 4s4-4 8-4"/></svg>
+        <h3>Anti-frisottis</h3>
+        <p>Discipline les mèches rebelles et adoucit le toucher dès la première application.</p>
+      </div>
+      <div class="benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+        <h3>Brillance</h3>
+        <p>Un fini lumineux et soyeux, sans effet gras, sur tous types de cheveux.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INGREDIENTS / CERCLE ===================== -->
+<section class="cercle-section" id="composition">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Fiche technique — Arganis Cosmetics</span>
+      <h2>Le Cercle OUDA</h2>
+      <p>Sept huiles et actifs 100% naturels, sélectionnés pour leur complémentarité.</p>
+    </div>
+
+    <div class="cercle-wrap" id="cercleWrap">
+      <div class="cercle-ring"></div>
+      <div class="cercle-center"><img src="img/product-clean.jpeg" alt="OUDA Hair — huile capillaire multi-action"></div>
+      <!-- positions injected by JS -->
+    </div>
+
+    <div class="ingredient-list-mobile" id="cercleMobile"></div>
+  </div>
+</section>
+
+<!-- ===================== USAGE ===================== -->
+<section id="usage">
+  <div class="container">
+    <div class="usage">
+      <div class="usage-img">
+        <img src="img/dropper.jpeg" alt="Application de l'huile OUDA à la pipette">
+      </div>
+      <div>
+        <span class="eyebrow">Mode d'emploi</span>
+        <h2 style="margin:14px 0 30px; font-size:2.2rem;">Un geste, mèche à mèche</h2>
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">01</span>
+            <div>
+              <h3>Dosez</h3>
+              <p>Prélevez 2 à 3 gouttes à l'aide de la pipette, selon la longueur de vos cheveux.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">02</span>
+            <div>
+              <h3>Appliquez</h3>
+              <p>Répartissez sur les longueurs et les pointes, mèche à mèche, en évitant les racines si besoin.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">03</span>
+            <div>
+              <h3>Massez</h3>
+              <p>Massez délicatement pour faire pénétrer. À utiliser en soin quotidien ou avant-shampoing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LIFESTYLE ===================== -->
+<section class="lifestyle">
+  <img src="img/lifestyle.jpeg" alt="OUDA Hair, ambiance">
+  <div class="lifestyle-quote">
+    <p class="display">« Une formule pensée comme un rituel — pas comme un simple produit. »</p>
+    <span class="eyebrow">OUDA HAIR</span>
+  </div>
+</section>
+
+<!-- ===================== ORDER ===================== -->
+<section class="order" id="commander">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Paiement à la livraison</span>
+      <h2>Passer commande</h2>
+      <p>Livraison incluse partout au Maroc. Réglez en espèces à la réception de votre colis.</p>
+    </div>
+
+    <div class="order-inner">
+      <div class="order-summary">
+        <div>
+          <span class="eyebrow">Votre commande</span>
+          <h3>OUDA Hair<br>Huile Capillaire Multi-Action</h3>
+          <ul>
+            <li><span>Flacon 50ml + pipette</span><span>1x</span></li>
+            <li><span>Livraison</span><span>Incluse</span></li>
+            <li><span>Paiement</span><span>À la livraison</span></li>
+            <li><span>Zone</span><span>Tout le Maroc</span></li>
+          </ul>
+        </div>
+        <div class="price-block">
+          <div class="amount">199<sup>DH</sup></div>
+          <small>Livraison incluse partout au Maroc</small>
+        </div>
+      </div>
+
+      <form class="order-form" id="orderForm">
+        <div class="field">
+          <label for="nom">Nom &amp; prénom</label>
+          <input type="text" id="nom" name="nom" required placeholder="Votre nom complet">
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="tel" required placeholder="06 00 00 00 00">
+          </div>
+          <div class="field">
+            <label for="ville">Ville</label>
+            <input type="text" id="ville" name="ville" required placeholder="Casablanca, Rabat...">
+          </div>
+        </div>
+        <div class="field">
+          <label for="adresse">Adresse complète</label>
+          <input type="text" id="adresse" name="adresse" required placeholder="Quartier, rue, numéro...">
+        </div>
+        <div class="field">
+          <label for="quantite">Quantité</label>
+          <select id="quantite" name="quantite">
+            <option value="1">1 flacon — 199 DH</option>
+            <option value="2">2 flacons — 379 DH</option>
+            <option value="3">3 flacons — 549 DH</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-solid submit-btn">Confirmer ma commande</button>
+        <p class="form-note">En confirmant, votre commande est envoyée par WhatsApp pour validation. Aucun paiement en ligne requis.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Bon à savoir</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <div class="faq-q"><span>Comment se déroule la livraison ?</span><span class="plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">La livraison est assurée partout au Maroc. Vous réglez en espèces directement au livreur, à la réception de votre colis.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Puis-je commander plusieurs flacons ?</span><span class="plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Oui, le formulaire permet de choisir 1, 2 ou 3 flacons. Pour toute commande plus importante, contactez-nous directement sur WhatsApp.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>L'huile convient-elle à tous les types de cheveux ?</span><span class="plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Sa formule multi-action s'adapte aux cheveux secs, bouclés, colorés ou fragilisés. Un test sur une petite zone est recommandé avant la première utilisation.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">OUDA <span>HAIR</span></div>
+        <p>Huile capillaire multi-action formulée à partir d'huiles végétales 100% naturelles.</p>
+        <p class="footer-ar ar">وودا هير — العناية بشعرك تبدأ من هنا</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="#bienfaits">Bienfaits</a>
+        <a href="#composition">Composition</a>
+        <a href="#usage">Mode d'emploi</a>
+        <a href="#commander">Commander</a>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <a href="tel:+212667993689">+212 6 67 99 36 89</a>
+        <a href="https://wa.me/212667993689" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:contact@oudahair.ma">contact@oudahair.ma</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 OUDA HAIR. Tous droits réservés.</span>
+      <span>Fabriqué au Maroc — Arganis Cosmetics</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== WHATSAPP FLOAT ===================== -->
+<a class="wa-float" href="https://wa.me/212667993689" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.607 1.905 6.472L4 29l7.72-1.865A11.93 11.93 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-1.99 0-3.85-.58-5.41-1.578l-.388-.24-4.58 1.106 1.127-4.462-.253-.397A9.77 9.77 0 0 1 5.182 15c0-5.964 4.854-10.818 10.819-10.818S26.818 9.036 26.818 15 21.966 24.818 16.001 24.818zm5.977-8.16c-.328-.164-1.94-.957-2.24-1.066-.3-.11-.518-.164-.737.164-.219.328-.847 1.066-1.038 1.285-.191.219-.383.246-.71.082-.328-.164-1.386-.51-2.64-1.628-.976-.87-1.635-1.944-1.826-2.272-.191-.328-.02-.505.144-.669.148-.147.328-.383.492-.574.164-.191.219-.328.328-.547.11-.219.055-.41-.027-.574-.082-.164-.737-1.775-1.01-2.43-.266-.64-.537-.553-.737-.563-.191-.009-.41-.011-.629-.011-.219 0-.574.082-.875.41-.3.328-1.148 1.122-1.148 2.735s1.175 3.17 1.339 3.389c.164.219 2.312 3.53 5.602 4.95.783.338 1.394.54 1.87.69.786.25 1.5.215 2.065.13.63-.094 1.94-.793 2.213-1.558.273-.766.273-1.422.191-1.558-.082-.137-.3-.219-.629-.383z"/></svg>
+</a>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Build the ingredient circle
+  const ingredients = [
+    { fr: "Amande douce", lat: "Prunus amygdalus dulcis" },
+    { fr: "Huile d'argan", lat: "Argania spinosa" },
+    { fr: "Chanvre", lat: "Cannabis sativa seed oil" },
+    { fr: "Lavande", lat: "Lavandula angustifolia" },
+    { fr: "Jojoba", lat: "Simmondsia chinensis" },
+    { fr: "Vitamine E", lat: "Tocopherol" },
+    { fr: "Romarin", lat: "Rosmarinus officinalis" }
+  ];
+
+  const wrap = document.getElementById('cercleWrap');
+  const mobile = document.getElementById('cercleMobile');
+  const n = ingredients.length;
+  const radius = 46; // percentage
+
+  ingredients.forEach((ing, i) => {
+    const angle = (i / n) * 2 * Math.PI - Math.PI / 2;
+    const x = 50 + radius * Math.cos(angle);
+    const y = 50 + radius * Math.sin(angle);
+
+    const el = document.createElement('div');
+    el.className = 'ingredient';
+    el.style.left = x + '%';
+    el.style.top = y + '%';
+    el.innerHTML = `<div class="dot"></div><div class="fr">${ing.fr}</div><div class="lat">${ing.lat}</div>`;
+    wrap.appendChild(el);
+
+    const elm = document.createElement('div');
+    elm.className = 'ingredient';
+    elm.innerHTML = `<div class="dot"></div><div class="fr">${ing.fr}</div><div class="lat">${ing.lat}</div>`;
+    mobile.appendChild(elm);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Order form -> WhatsApp
+  const WHATSAPP_NUMBER = "212667993689";
+  const prices = { "1": 199, "2": 379, "3": 549 };
+
+  document.getElementById('orderForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const nom = document.getElementById('nom').value.trim();
+    const tel = document.getElementById('tel').value.trim();
+    const ville = document.getElementById('ville').value.trim();
+    const adresse = document.getElementById('adresse').value.trim();
+    const qte = document.getElementById('quantite').value;
+    const total = prices[qte];
+
+    const message =
+`Nouvelle commande OUDA HAIR
+—————————————
+Nom : ${nom}
+Téléphone : ${tel}
+Ville : ${ville}
+Adresse : ${adresse}
+Quantité : ${qte} flacon(s)
+Total : ${total} DH (livraison incluse, paiement à la livraison)`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
